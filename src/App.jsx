@@ -16,7 +16,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <AuthenticationButton />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/job-seeker" element={<PrivateRoute component={JobSeeker} role="job_seeker" />} />

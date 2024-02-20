@@ -3,17 +3,18 @@ import {
   Flex,
   Heading,
   Text,
+  HStack,
   VStack,
   Link,
   SimpleGrid,
+  Spacer,
   Badge,
 } from '@chakra-ui/react';
+import AuthenticationButton from '../components/AuthenticationButton';
 
 const Referrer = () => {
-  // Dummy navigation data
   const navItems = ['Dashboard', 'Referrals', 'Settings', 'Logout'];
 
-  // Dummy applications data
   const applications = [
     { name: 'John Doe', position: 'Frontend Developer', status: 'Pending' },
     { name: 'Jane Smith', position: 'UI/UX Designer', status: 'Reviewed' },
@@ -24,7 +25,11 @@ const Referrer = () => {
   return (
     <Flex direction="column" h="100vh">
       <Box bg="teal.500" color="white" p={4}>
-        <Heading>Referrer Dashboard</Heading>
+        <HStack width="100%">
+          <Heading>Job Seeker Dashboard</Heading>
+          <Spacer /> 
+          <AuthenticationButton />
+        </HStack>
       </Box>
 
       <Flex flex="1">

@@ -3,12 +3,14 @@ import {
   Flex,
   Heading,
   Text,
+  HStack,
   VStack,
   Spacer,
   Link,
   SimpleGrid,
   Button,
 } from '@chakra-ui/react';
+import AuthenticationButton from '../components/AuthenticationButton';
 
 const JobSeeker = () => {
   // Dummy navigation data
@@ -25,7 +27,11 @@ const JobSeeker = () => {
   return (
     <Flex direction="column" h="100vh">
       <Box bg="blue.500" color="white" p={4}>
-        <Heading>Job Seeker Dashboard</Heading>
+        <HStack width="100%">
+          <Heading>Job Seeker Dashboard</Heading>
+          <Spacer /> 
+          <AuthenticationButton />
+        </HStack>
       </Box>
 
       <Flex flex="1">
