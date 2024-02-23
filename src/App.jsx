@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import PostRefForm from './pages/PostRefForm';
+import SearchJobs from './pages/SearchJobs';
 import PrivateRoute from './components/PrivateRoute';
 import JobSeeker from './pages/JobSeeker';
 import Referrer from './pages/Referrer'; 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route element={<PrivateRoute role="job_seeker" />}>
           <Route path="/job-seeker" element={<JobSeeker />} />
+          <Route path="/job-seeker/search" element={<SearchJobs/>} />
         </Route>
         <Route element={<PrivateRoute role="referrer" />}>
           <Route path="/referrer" element={<Referrer />} />

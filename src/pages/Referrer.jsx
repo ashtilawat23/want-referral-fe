@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Flex, Box, SimpleGrid, Heading, Text, Badge, Spacer
+  Flex, Box, SimpleGrid, Heading, Text, Badge
 } from '@chakra-ui/react';
 import NavBar from '../components/NavBar';
 import Header from '../components/Header';

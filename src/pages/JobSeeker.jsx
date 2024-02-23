@@ -5,17 +5,14 @@ import {
   Text,
   HStack,
   VStack,
-  Spacer,
-  Link,
   SimpleGrid,
   Button,
   Tag
 } from '@chakra-ui/react';
-import AuthenticationButton from '../components/AuthenticationButton';
+import NavBar from '../components/NavBar';
+import Header from '../components/Header';
 
 const JobSeeker = () => {
-  // Dummy navigation data
-  const navItems = ['Home', 'About', 'Jobs', 'Contact'];
 
   const jobs = [
     {
@@ -60,24 +57,11 @@ const JobSeeker = () => {
 
   return (
     <Flex direction="column" h="100vh">
-      <Box bg="teal.500" color="white" px={8} py={4}>
-        <HStack width="100%">
-          <Heading>Job Seeker Dashboard</Heading>
-          <Spacer />
-          <AuthenticationButton />
-        </HStack>
-      </Box>
-
-      <Flex flex="1">
-        <VStack bg="gray.100" w="15%" p={5} spacing={5} alignItems="flex-start">
-          {navItems.map((item, index) => (
-            <Link key={index} p={2}>
-              {item}
-            </Link>
-          ))}
-        </VStack>
-
-        <Box flex="1" p={5}>
+      <Flex flex='1'>
+        <NavBar role='job-seeker'/>
+        <Box width='100%' p={5}>
+          <Flex direction='column' gap={10}>
+          <Header title='Job Seeker Dashboard'/>
           <SimpleGrid columns={1} spacing={5}>
             {jobs.map((job, index) => (
               <Box key={index} boxShadow="lg" p="6" rounded="md" bg="white" border="1px" borderColor="teal.400">
@@ -94,12 +78,13 @@ const JobSeeker = () => {
                   </HStack>
                   <VStack align='center'>
                     <Text fontSize="lg" fontWeight="bold">${job.price}</Text>
-                    <Button colorScheme="teal" size='lg'>Want Referral</Button>
+                    <Button colorScheme="teal" size='md'>Want Referral</Button>
                   </VStack>
                 </Flex>
               </Box>
             ))}
           </SimpleGrid>
+          </Flex>
         </Box>
       </Flex>
     </Flex>

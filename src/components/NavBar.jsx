@@ -6,17 +6,16 @@ const NavBar = ({ role }) => {
   const navigate = useNavigate();
 
   if (role === 'job-seeker') {
-    navItems = ['Job Dashboard', 'Search Jobs', 'Profile', 'Logout'];
+    navItems = ['My Jobs', 'Search', 'Profile', 'Settings'];
   } else if (role === 'referrer') {
     navItems = ['My Referrals', 'Review Candidates', 'Post Referral', 'Settings'];
   }
 
   const handleNavigate = (item) => {
-    // Check if the clicked item is "My Referrals"
-    if (item === 'My Referrals') {
-      navigate(`/${role}`); // Navigate to '/{role}'
+    if (item === 'My Referrals' || item === 'My Jobs') {
+      navigate(`/${role}`);
     } else {
-      // For other items, convert the item name to a navPath and navigate
+      console.log("hit")
       const navPath = `/${role}/${item.toLowerCase().replace(/\s+/g, '-')}`;
       navigate(navPath);
     }
