@@ -32,10 +32,10 @@ const PostRefForm = () => {
     <Flex direction="column" minHeight="100vh">
       <Flex flex='1'>
       <NavBar role="referrer" />
-      <Box width='100%' p={5}>
+      <Box width='100%' p={10}>
       <Flex flex="1" direction="column">
         <Header title='Post New Referral' />
-        <Box as="form" flex="1" p={5} overflowY="auto" onSubmit={handleSubmit}>
+        <Box as="form" flex="1" p={10} overflowY="auto" onSubmit={handleSubmit}>
           <FormControl id="title" isRequired mb={4}>
             <FormLabel>Job Title</FormLabel>
             <Input name="title" value={form.title} onChange={handleChange} />

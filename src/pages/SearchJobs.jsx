@@ -8,7 +8,7 @@ const SearchJobs = () => {
     <Flex direction='column' height='100vh'>
     <Flex flex='1'>
       <NavBar role='job-seeker'/>
-      <Box width='100%' p={5}>
+      <Box width='100%' p={10}>
       <Flex direction='column' gap={10}>
       <Header title='Search Jobs'/>
       </Flex>

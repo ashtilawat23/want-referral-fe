@@ -1,4 +1,4 @@
-import { VStack, Button, Text } from '@chakra-ui/react';
+import { VStack, Button, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 const NavBar = ({ role }) => {
@@ -22,10 +22,9 @@ const NavBar = ({ role }) => {
   }
 
   return (
-    <VStack bg='teal' w="15%" p={5} spacing={5} alignItems="flex-start">
-      <Text fontSize="2xl" fontWeight="bold" mb={5} alignSelf="center" color='white'>
-        Want Referral?
-      </Text>
+    <VStack bg='teal' w="20%" p={2} spacing={5} alignItems="flex-start">
+      <Image src="/assets/WantReferral.png" alt="Want Referral" w='100%' h='8%' objectFit="cover" my={5} alignSelf='auto' />
+
       {navItems.map((item, index) => (
         <Button 
             key={index} 
