@@ -10,16 +10,20 @@ const Home = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      const roles = user && user['https://claims.wantreferral.com/roles'];
-      const hasJobSeekerRole = roles && roles.includes('job_seeker');
-      const hasReferrerRole = roles && roles.includes('referrer');
-
+      const roles = user?.['https://claims.wantreferral.com/roles'];
+      const hasJobSeekerRole = roles?.includes('job_seeker');
+      const hasReferrerRole = roles?.includes('referrer');
+  
       if (hasJobSeekerRole) {
         navigate('/job-seeker');
       } else if (hasReferrerRole) {
         navigate('/referrer');
+      } else {
+        // Handle users who are authenticated but do not have either role
+        // For example, you could navigate to a general info page or show a message
+        // navigate('/some-general-page');
+        console.log('Authenticated user does not have a specific role.');
       }
-      // Add more role checks if needed
     }
   }, [isAuthenticated, user, navigate]);
 

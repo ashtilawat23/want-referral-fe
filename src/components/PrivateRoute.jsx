@@ -1,16 +1,21 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const PrivateRoute = ({ component: Component, role }) => {
+const PrivateRoute = ({ role }) => {
   const { isAuthenticated, user } = useAuth0();
-  const userRoles = user && user['https://claims.wantreferral.com/roles'][0];
-  const hasRole = userRoles?.includes(role);
 
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" />;
   }
 
-  return hasRole ? <Component /> : <Navigate to="/unauthorized" replace />;
+  const userRoles = user?.['https://claims.wantreferral.com/roles'] || [];
+  const hasRole = role ? userRoles.includes(role) : true;
+
+  if (!hasRole) {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return <Outlet />;
 };
 
 export default PrivateRoute;
