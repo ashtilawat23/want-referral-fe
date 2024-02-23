@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import {
   Box, Flex, FormControl, FormLabel, Input, Textarea, NumberInput, NumberInputField,
-  Button, Heading, VStack, Link
+  Button, Heading
 } from '@chakra-ui/react';
-import AuthenticationButton from '../components/AuthenticationButton';
+import NavBar from '../components/NavBar'; // Ensure the path is correct
+import Header from '../components/Header'; // Ensure the path is correct
 
 const PostRefForm = () => {
   const [form, setForm] = useState({
@@ -24,58 +25,43 @@ const PostRefForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, such as sending data to a server
-    console.log(form); // For demonstration purposes
+    console.log(form); // Handle form submission here
   };
 
-  const navItems = ['Dashboard', 'Referrals', 'Post Referral', 'Settings', 'Logout']; // Adjust as needed
-
   return (
-    <Flex direction="column" h="100vh">
-      <Box bg="blue.500" color="white" p={4}>
-        <Flex align="center" justify="space-between">
-          <Heading>Referrer Dashboard</Heading>
-          <AuthenticationButton />
-        </Flex>
-      </Box>
-
-      <Flex flex="1">
-        <VStack bg="gray.100" w="20%" p={4} spacing={4} alignItems="flex-start">
-          {navItems.map((item, index) => (
-            <Link key={index} p={2}>{item}</Link>
-          ))}
-        </VStack>
-
-        <Box as="form" flex="1" p={5} onSubmit={handleSubmit}>
+    <Flex direction="column" minHeight="100vh">
+      <Flex flex='1'>
+      <NavBar role="referrer" />
+      <Box width='100%' p={5}>
+      <Flex flex="1" direction="column">
+        <Header title='Post New Referral' />
+        <Box as="form" flex="1" p={5} overflowY="auto" onSubmit={handleSubmit}>
           <FormControl id="title" isRequired mb={4}>
             <FormLabel>Job Title</FormLabel>
             <Input name="title" value={form.title} onChange={handleChange} />
           </FormControl>
-
           <FormControl id="company" isRequired mb={4}>
             <FormLabel>Company</FormLabel>
             <Input name="company" value={form.company} onChange={handleChange} />
           </FormControl>
-
           <FormControl id="responsibilities" isRequired mb={4}>
             <FormLabel>Role Responsibilities</FormLabel>
             <Textarea name="responsibilities" value={form.responsibilities} onChange={handleChange} />
           </FormControl>
-
           <FormControl id="requirements" isRequired mb={4}>
             <FormLabel>Minimum Requirements</FormLabel>
             <Textarea name="requirements" value={form.requirements} onChange={handleChange} />
           </FormControl>
-
-          <FormControl id="price" isRequired mb={4}>
+          <FormControl id="price" isRequired mb={6}>
             <FormLabel>Price for Referral ($)</FormLabel>
             <NumberInput min={0}>
               <NumberInputField name="price" value={form.price} onChange={handleChange} />
             </NumberInput>
           </FormControl>
-
-          <Button mt={4} colorScheme="blue" type="submit">Submit Referral</Button>
+          <Button colorScheme="teal" type="submit">Submit Referral</Button>
         </Box>
+      </Flex>
+      </Box>
       </Flex>
     </Flex>
   );

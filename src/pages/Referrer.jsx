@@ -1,22 +1,11 @@
+import React from 'react';
 import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  HStack,
-  VStack,
-  Link,
-  SimpleGrid,
-  Spacer,
-  Badge,
-  Button
+  Flex, Box, SimpleGrid, Heading, Text, Badge, Spacer
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
-import AuthenticationButton from '../components/AuthenticationButton';
+import NavBar from '../components/NavBar';
+import Header from '../components/Header';
 
 const Referrer = () => {
-  const navItems = ['Dashboard', 'Review Candidates', 'Post Referrals'];
-  const navigate = useNavigate();
 
   const applications = [
     { name: 'John Doe', position: 'Frontend Developer', status: 'Pending' },
@@ -25,64 +14,43 @@ const Referrer = () => {
     { name: 'Emily Johnson', position: 'Data Scientist', status: 'Offered' },
   ];
 
-  const handlePostReferralClick = () => {
-  
-    // Navigate to the PostRefForm route
-    navigate('/referrer/post-referral');
+  // Helper function to determine badge color based on application status
+  const getStatusColorScheme = (status) => {
+    switch (status) {
+      case 'Pending':
+        return 'yellow';
+      case 'Reviewed':
+        return 'blue';
+      case 'Interviewed':
+        return 'orange';
+      case 'Offered':
+        return 'green';
+      default:
+        return 'gray';
+    }
   };
-   
 
   return (
-    <Flex direction="column" h="100vh">
-      <Box bg="blue.500" color="white" p={4}>
-        <HStack width="100%">
-          <Heading>Referrer Dashboard</Heading>
-          <Spacer />
-          <Button colorScheme="whiteAlpha" _hover={{ backgroundColor: "white", color: "blue.500" }} onClick={handlePostReferralClick}>Post Referral</Button>
-          <AuthenticationButton />
-        </HStack>
-      </Box>
-
-
-      <Flex flex="1">
-        <VStack bg="gray.100" w="20%" p={4} spacing={4} alignItems="flex-start">
-          {navItems.map((item, index) => (
-            <Link key={index} p={2} onClick={handlePostReferralClick}>
-              {item}
-            </Link>
-          ))}
-        </VStack>
-
-        <Box flex="1" p={5}>
-          <SimpleGrid columns={2} spacing={10}>
-            {applications.map((app, index) => (
-              <Box key={index} bg="white" p={5} shadow="md" borderRadius="md">
-                <Heading size="md">{app.name}</Heading>
-                <Text fontSize="lg">{app.position}</Text>
-                <Badge colorScheme={getStatusColorScheme(app.status)}>{app.status}</Badge>
-              </Box>
-            ))}
-          </SimpleGrid>
+    <Flex direction='column' height='100vh'>
+      <Flex flex='1'>
+        <NavBar role='referrer'/>
+        <Box width='100%' p={5}>
+          <Flex direction='column' gap={10}>
+            <Header title='Referrer Dashboard'/>
+            <SimpleGrid columns={2} spacing={10}>
+              {applications.map((app, index) => (
+                <Box key={index} bg="white" p={5} shadow="md" borderRadius="md">
+                  <Heading size="md">{app.name}</Heading>
+                  <Text fontSize="lg">{app.position}</Text>
+                  <Badge colorScheme={getStatusColorScheme(app.status)}>{app.status}</Badge>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </Flex>
         </Box>
       </Flex>
     </Flex>
   );
-};
-
-// Helper function to determine badge color based on application status
-const getStatusColorScheme = (status) => {
-  switch (status) {
-    case 'Pending':
-      return 'yellow';
-    case 'Reviewed':
-      return 'blue';
-    case 'Interviewed':
-      return 'orange';
-    case 'Offered':
-      return 'green';
-    default:
-      return 'gray';
-  }
 };
 
 export default Referrer;
