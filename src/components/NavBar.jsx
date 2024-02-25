@@ -23,7 +23,7 @@ const NavBar = ({ role }) => {
 
   return (
     <VStack bg='teal' w="20%" p={2} spacing={5} alignItems="flex-start">
-      <Image src="/assets/WantReferral.png" alt="Want Referral" w='100%' h='8%' objectFit="cover" my={5} alignSelf='auto' />
+      <Image src="/assets/want_ref_001.png" alt="Want Referral" w='100%' h='8%' objectFit="cover" my={5} alignSelf='auto' />
 
       {navItems.map((item, index) => (
         <Button 

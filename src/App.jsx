@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import JobSeeker from './pages/JobSeeker';
 import Referrer from './pages/Referrer'; 
 import Home from './pages/Home';
+import Profile from './pages/Profile'
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -21,6 +22,7 @@ const App = () => {
         <Route element={<PrivateRoute role="job_seeker" />}>
           <Route path="/job-seeker" element={<JobSeeker />} />
           <Route path="/job-seeker/search" element={<SearchJobs/>} />
+          <Route path="/job-seeker/profile" element={<Profile/>} />
         </Route>
         <Route element={<PrivateRoute role="referrer" />}>
           <Route path="/referrer" element={<Referrer />} />
