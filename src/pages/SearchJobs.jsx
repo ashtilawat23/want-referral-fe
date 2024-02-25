@@ -43,19 +43,18 @@ const SearchJobs = () => {
       <Flex direction='column' gap={10}>
       <Header title='Search Jobs'/>
       <Input 
-            placeholder="Search by title, company, location, or experience" 
+            placeholder="Search by title, company, location, or years of experience" 
             value={filter} 
             onChange={(e) => setFilter(e.target.value)} 
-            mb={5}
-            focusBorderColor='teal.500'
+            focusBorderColor='green.300'
           />
-          <Table variant="simple">
+          <Table variant="striped" size='sm'>
             <Thead>
               <Tr>
                 <Th>Job Title</Th>
                 <Th>Company</Th>
                 <Th>Location</Th>
-                <Th isNumeric>Min. Years of Experience</Th>
+                <Th>Experience</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -64,8 +63,8 @@ const SearchJobs = () => {
                   <Td>{job.job_title}</Td>
                   <Td>{job.company}</Td>
                   <Td>{job.location}</Td>
-                  <Td isNumeric>{job.experience}</Td>
-                  <Td isNumeric>
+                  <Td>{job.experience} years</Td>
+                  <Td>
                   <IconButton
                     aria-label="Save job"
                     icon={<FaHeart />}

@@ -7,8 +7,17 @@ import {
   VStack,
   SimpleGrid,
   Button,
-  Tag
+  Tag,
+  Card,
+  CardBody,
+  Stack,
+  Divider,
+  CardFooter,
+  ButtonGroup,
+  Image,
+  Spacer
 } from '@chakra-ui/react';
+import { FaArrowRight } from "react-icons/fa";
 import NavBar from '../components/NavBar';
 import Header from '../components/Header';
 
@@ -20,33 +29,37 @@ const JobSeeker = () => {
       company: 'Company A',
       location: 'Remote',
       price: 70, // Example price
-      tags: ['JavaScript', 'React', 'CSS'] // Relevant tags
+      tags: ['JavaScript', 'React', 'CSS'], // Relevant tags
+      description: 'Join our dynamic team as a Frontend Developer, crafting responsive and visually compelling web experiences using modern JavaScript frameworks like React. Collaborate on diverse projects that make a real impact.'
     },
     {
       title: 'Backend Developer',
       company: 'Company B',
       location: 'New York',
       price: 80, // Example price
-      tags: ['Node.js', 'Express', 'MongoDB'] // Relevant tags
+      tags: ['Node.js', 'Express', 'MongoDB'], // Relevant tags
+      description: 'Seeking a Backend Developer to build robust server-side applications in a fast-paced environment. Leverage Node.js and MongoDB to create scalable, efficient backend services that power our innovative solutions.'
     },
     {
       title: 'Full Stack Developer',
       company: 'Company C',
       location: 'San Francisco',
       price: 90, // Example price
-      tags: ['JavaScript', 'React', 'Node.js', 'Express'] // Relevant tags
+      tags: ['JavaScript', 'React', 'Node.js', 'Express'], // Relevant tags
+      description: 'We are looking for a Full Stack Developer capable of handling both front and back-end tasks. You will be developing full-fledged platforms using a stack that includes React, Node.js, and Express.'
     },
     {
       title: 'Data Scientist',
       company: 'Company D',
       location: 'Remote',
       price: 95, // Example price
-      tags: ['Python', 'Machine Learning', 'Data Analysis'] // Relevant tags
+      tags: ['Python', 'Machine Learning', 'Data Analysis'], // Relevant tags
+      description: 'As a Data Scientist with our team, you will harness the power of data using Python and machine learning techniques. Your insights will drive decision-making and shape the future of our products.'
     }
-  ];
+  ];  
 
   const pickRandomColor = () => {
-    const colors = ['red', 'green', 'teal', 'purple', 'blue'];
+    const colors = ['red', 'cyan', 'purple', 'blue'];
   
     // Generate a random index based on the length of the colors array
     const randomIndex = Math.floor(Math.random() * colors.length);
@@ -64,24 +77,26 @@ const JobSeeker = () => {
           <Header title='Job Seeker Dashboard'/>
           <SimpleGrid columns={1} spacing={5}>
             {jobs.map((job, index) => (
-              <Box key={index} boxShadow="lg" p="6" rounded="md" bg="white" border="1px" borderColor="teal.400">
-                <Flex direction="row" justify="space-between" align="center">
-                  <VStack align='start' width='20%'>
-                    <Heading size="md">{job.title}</Heading>
-                    <Text>{job.company}</Text>
-                    <Text fontSize="sm">{job.location}</Text>
-                  </VStack>
-                  <HStack spacing={4} align='start' width='40%'>
-                    {job.tags.map((tag) => (
-                      <Tag key={tag} colorScheme={pickRandomColor()} size='md'>{tag}</Tag>
-                    ))}
+              <Card maxW='full'>
+                <CardBody>
+                  <HStack>
+                  <Stack spacing='2' w='35%'>
+                    <Heading size='md'>{job.title}</Heading>
+                    <Text>{job.company}, {job.location}</Text>
+                  </Stack>
+                  <HStack w='50%'>
+                      {job.tags.map((tag) => {
+                        return <Tag key={index} colorScheme={pickRandomColor()}>{tag}</Tag>
+                      })}
                   </HStack>
-                  <VStack align='center'>
-                    <Text fontSize="lg" fontWeight="bold">${job.price}</Text>
-                    <Button colorScheme="teal" size='md'>Want Referral</Button>
-                  </VStack>
-                </Flex>
-              </Box>
+                  <Stack w='15%'>
+                  <Button colorScheme='green' w='full' rightIcon={<FaArrowRight />}>
+                      Get Referral
+                    </Button>
+                  </Stack>
+                  </HStack>
+                </CardBody>
+              </Card>
             ))}
           </SimpleGrid>
           </Flex>
